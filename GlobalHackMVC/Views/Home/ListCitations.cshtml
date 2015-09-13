@@ -10,9 +10,10 @@
     @foreach (citation item in Model)
     {
         
-            <div>Citation No: @Html.DisplayFor(modelItem => item.citation_number)</div>
-           
-     }
+            <div>Citation No: @Html.DisplayFor(modelItem => item.citation_number)
+            License No: @Html.DisplayFor(modelItem => item.drivers_license_number)</div>
+
+    }
           
             @*<dl class="dl-horizontal">
                 <dt>
