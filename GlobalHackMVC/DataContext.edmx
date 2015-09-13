@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="globalhackModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="citations">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" Nullable="false" />
+          <Property Name="citation_number" Type="int" Nullable="false" />
+          <Property Name="citation_date" Type="datetime" />
+          <Property Name="first_name" Type="varchar" MaxLength="11" />
+          <Property Name="last_name" Type="varchar" MaxLength="10" />
+          <Property Name="date_of_birth" Type="datetime" />
+          <Property Name="defendant_address" Type="varchar" MaxLength="30" />
+          <Property Name="defendant_city" Type="varchar" MaxLength="23" />
+          <Property Name="defendant_state" Type="varchar" MaxLength="2" />
+          <Property Name="drivers_license_number" Type="varchar" MaxLength="10" />
+          <Property Name="court_date" Type="datetime" />
+          <Property Name="court_location" Type="varchar" MaxLength="39" />
+          <Property Name="court_address" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="violations">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" Nullable="false" />
+          <Property Name="citation_number" Type="int" Nullable="false" />
+          <Property Name="violation_number" Type="varchar" MaxLength="12" />
+          <Property Name="violation_description" Type="varchar" MaxLength="31" />
+          <Property Name="warrant_status" Type="bit" />
+          <Property Name="warrant_number" Type="varchar" MaxLength="9" />
+          <Property Name="status" Type="varchar" MaxLength="21" />
+          <Property Name="status_date" Type="datetime" />
+          <Property Name="fine_amount" Type="decimal" Precision="28" Scale="0" />
+          <Property Name="court_cost" Type="decimal" Precision="28" Scale="0" />
+        </EntityType>
+        <EntityContainer Name="globalhackModelStoreContainer">
+          <EntitySet Name="citations" EntityType="Self.citations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="violations" EntityType="Self.violations" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="globalhackModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="citation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" />
+          <Property Name="citation_number" Type="Int32" Nullable="false" />
+          <Property Name="citation_date" Type="DateTime" Precision="3" />
+          <Property Name="first_name" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="date_of_birth" Type="DateTime" Precision="3" />
+          <Property Name="defendant_address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="defendant_city" Type="String" MaxLength="23" FixedLength="false" Unicode="false" />
+          <Property Name="defendant_state" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="drivers_license_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="court_date" Type="DateTime" Precision="3" />
+          <Property Name="court_location" Type="String" MaxLength="39" FixedLength="false" Unicode="false" />
+          <Property Name="court_address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="violation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" />
+          <Property Name="citation_number" Type="Int32" Nullable="false" />
+          <Property Name="violation_number" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="violation_description" Type="String" MaxLength="31" FixedLength="false" Unicode="false" />
+          <Property Name="warrant_status" Type="Boolean" />
+          <Property Name="warrant_number" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
+          <Property Name="status_date" Type="DateTime" Precision="3" />
+          <Property Name="fine_amount" Type="Decimal" Precision="28" Scale="0" />
+          <Property Name="court_cost" Type="Decimal" Precision="28" Scale="0" />
+        </EntityType>
+        <EntityContainer Name="globalhackEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="citations" EntityType="Self.citation" />
+          <EntitySet Name="violations" EntityType="Self.violation" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="globalhackModelStoreContainer" CdmEntityContainer="globalhackEntities1">
+          <EntitySetMapping Name="citations">
+            <EntityTypeMapping TypeName="globalhackModel.citation">
+              <MappingFragment StoreEntitySet="citations">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="citation_number" ColumnName="citation_number" />
+                <ScalarProperty Name="citation_date" ColumnName="citation_date" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="defendant_address" ColumnName="defendant_address" />
+                <ScalarProperty Name="defendant_city" ColumnName="defendant_city" />
+                <ScalarProperty Name="defendant_state" ColumnName="defendant_state" />
+                <ScalarProperty Name="drivers_license_number" ColumnName="drivers_license_number" />
+                <ScalarProperty Name="court_date" ColumnName="court_date" />
+                <ScalarProperty Name="court_location" ColumnName="court_location" />
+                <ScalarProperty Name="court_address" ColumnName="court_address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="violations">
+            <EntityTypeMapping TypeName="globalhackModel.violation">
+              <MappingFragment StoreEntitySet="violations">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="citation_number" ColumnName="citation_number" />
+                <ScalarProperty Name="violation_number" ColumnName="violation_number" />
+                <ScalarProperty Name="violation_description" ColumnName="violation_description" />
+                <ScalarProperty Name="warrant_status" ColumnName="warrant_status" />
+                <ScalarProperty Name="warrant_number" ColumnName="warrant_number" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="status_date" ColumnName="status_date" />
+                <ScalarProperty Name="fine_amount" ColumnName="fine_amount" />
+                <ScalarProperty Name="court_cost" ColumnName="court_cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
